@@ -33,6 +33,7 @@ numbers1.forEach(function(number) {
 //  });
 // }
 
+// ------------------------------------------------
 var images = [
   { height: 10, width: 30 },
   { height: 20, width: 90 },
@@ -45,22 +46,24 @@ images.forEach(function(image) {
   });
   console.log(areas);
 
-  // for loopからmapへ
+  // ------------------------------------------------
+  // map
   let numbers2 = [1, 2, 3];
-  let doubleNumbers = [];
+  // let doubleNumbers = [];
 
   // for(let i = 0; i < numbers2.length; i++) {
   //   doubleNumbers.push(numbers2[i] * 2);
   // }
   // console.log(doubleNumbers);
 
- numbers2.map(function(number) {
-   return doubleNumbers.push(number * 2);
+ let doubleNumber3 = numbers2.map(function(number) {
+   return number * 2;
  });
  console.log(numbers2);
- console.log(doubleNumbers);
+ console.log(doubleNumber3);
 
-
+// ------------------------------------------------
+// map
  let cars = [
    {type:'軽自動車', price:'安い'},
    {type:'高級車', price:'高い'}
@@ -71,7 +74,9 @@ images.forEach(function(image) {
  });
 
  console.log(prices);
-
+ 
+// ------------------------------------------------
+//  map
  var images2 = [
   { height: '34px', width: '39px' },
   { height: '54px', width: '19px' },
@@ -83,6 +88,7 @@ var heights = images2.map(function(image) {
 })
 console.log(heights);
 
+// map
 var trips = [
   { distance: 34, time: 10 },
   { distance: 90, time: 50 },
