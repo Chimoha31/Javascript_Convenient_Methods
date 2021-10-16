@@ -141,3 +141,171 @@ let findComment = posts2.find(post2 => {
  return post2.id == comment2.postId;
 });
 console.log(findComment);
+
+// --------------------------------------------
+var users = [
+  { id: 1, admin: false },
+  { id: 2, admin: false },
+  { id: 3, admin: true }
+];
+
+var admin = users.find(function(user) {
+   return user.admin === true; 
+});
+
+console.log(admin);
+
+// --------------------------------------------
+let computers = [
+  {name: 'Apple', ram: 24},
+  {name: 'Compaq', ram: 4},
+  {name: 'Acer', ram: 32},
+];
+//16ramが必要なソフト
+//for loop
+// let allComputersCanRun = true;
+// let someComputersCanRun = false;
+
+// for(let i = 0; i < computers.length; i++) {
+//   let computer = computers[i];
+//   if(computer.ram < 16) {
+//     allComputersCanRun = false;
+//   }else{
+//     someComputersCanRun = true;
+//   }
+// }
+
+//every
+let everyComputers = computers.every(function(computer) {
+  return computer.ram >= 16;
+}); 
+console.log(everyComputers);
+
+// --------------------------------------------
+//some
+let computers2 = [
+  {name: 'Apple', ram: 24},
+  {name: 'Compaq', ram: 4},
+  {name: 'Acer', ram: 32},
+];
+ 
+//16ramが必要なソフト
+let everyComputers2 = computers.some(function(computer) {
+  return computer.ram >= 16;
+}); 
+console.log(everyComputers2);
+
+// --------------------------------------------
+var names2 = [
+  'けん',
+  'はなこ',
+  'そういちろう',
+]
+
+let nameLetter = names2.every(function(name2) {
+  return name2.length >= 3;
+});
+console.log(nameLetter);
+
+let nameLetter2 = names2.some(function(name2) {
+  return name2.length >= 3;
+});
+console.log(nameLetter2);
+
+// --------------------------------------------
+var users = [
+  { id: 21, hasSubmitted: true },
+  { id: 62, hasSubmitted: false },
+  { id: 4, hasSubmitted: true }
+];
+
+var hasSubmitted = users.every(user => {
+   return user.hasSubmitted === true; 
+});
+console.log(hasSubmitted);
+
+var requests = [
+  { url: '/photos', status: 'complete' },
+  { url: '/albums', status: 'pending' },
+  { url: '/users', status: 'failed' }
+];
+
+var inProgress = requests.some(request => {
+   return request.status === 'pending'; 
+});
+console.log(inProgress);
+
+// --------------------------------------------
+//for loop
+var numbers = [10, 20, 30];
+// var sum2 = 0;
+
+// for(let i = 0; i < numbers.length; i++) {
+//   sum2 += numbers[i];
+// }
+// console.log(sum2);
+
+// reduce
+let total = numbers.reduce((sum2, number) => {
+  return sum2 + number;
+}, 0);
+
+console.log(total);
+
+var primaryColors = [
+  {color: 'red'},
+  {color: 'yellow'},
+  {color: 'blue'}
+];
+
+let arrayForReduce = primaryColors.reduce(function(previous, primaryColor) {
+ previous.push(primaryColor.color);
+ return previous;
+}, []);
+console.log(arrayForReduce);
+
+// --------------------------------------------
+// '((((()))))'は均衡を取れているかどうか？
+function compare(string) {
+  return !string.split('').reduce(function(previous, char) {
+    if(char < 0) {
+      return previous;
+    }else if(char === '(') {
+      return previous + 1;
+    }else if(char === ')') {
+      return previous - 1;
+    }
+  }, 0);
+}
+
+console.log(compare('(())'));
+// --------------------------------------------
+
+var trips = [{ distance: 34 }, { distance: 12 } , { distance: 1 }];
+
+var totalDistance = trips.reduce(function(previous, trip) {
+    return previous + trip.distance;
+}, 0);
+
+console.log(totalDistance);
+
+
+var desks = [
+  { type: 'sitting' },
+  { type: 'standing' },
+  { type: 'sitting' },
+  { type: 'sitting' },
+  { type: 'standing' }
+];
+
+var deskTypes = desks.reduce(function(previous, desk) {
+    if(desk.type === 'sitting'){
+        previous.sitting ++;
+    }else{
+        previous.standing ++;
+    }
+    return previous;
+}, { sitting: 0, standing: 0 });
+
+console.log(deskTypes);
+
