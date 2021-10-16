@@ -100,3 +100,90 @@ var speeds = trips.map(function(trip) {
 });
 
 console.log(speeds);
+
+// ------------------------------------------------------------
+function count(targetString){
+  var characters = ['a', 'e', 'i', 'o', 'u'];
+  var number5 = 0;
+
+  for(var i = 0; i < targetString.length; i++) {
+    if(characters.includes(targetString[i])) {
+      number5++;
+    }
+  }
+  return number5;
+}
+
+console.log(count('aeiosgyduwi'));
+
+// ------------------------------------------------------------
+
+function getMessage() {
+  const year = new Date().getFullYear();
+
+  return "今年は" + year + "年です。";
+}
+
+console.log(getMessage());
+
+function getMessage2() {
+  const year = new Date().getFullYear();
+
+  return `今年は ${year - 1} 年です。`;
+}
+
+console.log(getMessage2());
+
+// ------------------------------------------------------------
+
+function doubleMessage(number) {
+  return `${number}を2倍すると${2 * number}になります`;
+}
+
+console.log(doubleMessage(20));
+
+const numbers6 = (a, b) => a + b;
+console.log(numbers6(1,2));
+
+const double = number7 => 2 * number7;
+console.log(double(8));
+
+const numbers8 = [1, 2, 3];
+
+let doubleNumber2 = numbers8.map(number8 => 2 * number8);
+console.log(doubleNumber2);
+
+// ES5の解決策
+const team = {
+  members:['太郎', '花子'],
+  teamName: 'スーパーチーム',
+  teamSummary: function() {
+    let self = this;
+    return this.members.map(function(member) {
+      return `${member}は${self.teamName}です！`;
+    });
+  }
+}
+
+//アロー関数で解決 
+console.log(team.teamSummary());
+const team2 = {
+  members:['太郎', '花子'],
+  teamName: 'スーパーチーム',
+  teamSummary: function() {
+    return this.members.map(member => `${member}は${this.teamName}です！`);
+  }
+}
+console.log(team2.teamSummary());
+
+
+const profile = {
+  name: '太郎',
+  getName: function() {
+   let self = this;
+   return self.name;
+  }
+};
+
+console.log(profile.getName());
+// ------------------------------------------------------------
