@@ -187,3 +187,95 @@ const profile = {
 
 console.log(profile.getName());
 // ------------------------------------------------------------
+function createBookShop(inventory) {
+  return {
+    inventory,
+    inventoryValue() {
+      return this.inventory.reduce((previous, book) => 
+        previous += book.price, 0);
+    },
+    priceForTitle(title) {
+      return this.inventory.find(book => book.title === title).price;
+    }
+  };
+}
+
+const inventory = [
+  {title: 'ハリーポッター', price: 1000},
+  {title: 'JavaScript入門', price: 1500},
+];
+
+const bookShop = createBookShop(inventory);
+console.log(bookShop.inventoryValue());
+console.log(bookShop.priceForTitle('ハリーポッター'));
+
+// ------------------------------------------------------------
+const canvasDimensions = function(width, initialHeight) {
+  const height = Math.floor(initialHeight * 9 /16);
+  return { 
+    width, 
+    height
+  };
+}
+console.log(canvasDimensions(100, 154));
+
+
+const color = 'red';
+
+const Car = {
+  color,
+  drive() {
+    return 'ブーーン!';
+  },
+  getColor() {
+    return this.color;
+  }
+};
+
+console.log(Car.color);
+console.log(Car.drive());
+console.log(Car.getColor());
+
+
+// ------------------------------------------------------------
+function addOffset(style = {}) {
+  style.offset = '10px';
+  return style;
+}
+console.log(addOffset());
+
+// ES5まで
+function makeAjjasRequest(url, method) {
+  if(!method) {
+    method = 'GET';
+  }
+  return method;
+}
+
+console.log(makeAjjasRequest('google.com'));
+console.log(makeAjjasRequest('google.com', 'post'));
+
+// ES6から
+function makeAjjasRequest(url, method = 'GET') {
+  return method;
+}
+
+console.log(makeAjjasRequest('google.com'));
+console.log(makeAjjasRequest('google.com', null));
+console.log(makeAjjasRequest('google.com', undefined));
+console.log(makeAjjasRequest('google.com', 'POST'));
+
+function User(id = generateId()) {
+  this.id = id;
+}
+
+function generateId() {
+  return Math.random * 100;
+}
+
+function createAdminUser(user = new User()) {
+  user.admin = true;
+  return user;
+}
+
+console.log(createAdminUser());
