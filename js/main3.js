@@ -216,15 +216,78 @@ console.log(total2);
     manager: '花子',
     engineer: '次郎'
   };
-
+  
   function* TeamIterator(team) {
     yield team.leader;
     yield team.manager;
     yield team.engineer;
   }
-
+  
   const names = [];
   for(let name of TeamIterator(engineeringTeam)){
     names.push(name);
   }
   console.log(names);
+  
+  // -------------------------------------------------
+  const testingTeam = {
+    lead: '典子',
+    teacher: '隆',
+    [Symbol.iterator]: function* () {
+      yield this.lead;
+      yield this.teacher;
+    }
+  }
+  
+  const engineeringTeam2 = {
+    testingTeam,
+    size: 3,
+    department: '開発部',
+    lead: '太郎',
+    manager: '花子',
+    engineer: '次郎',
+    [Symbol.iterator]: function* () {
+      yield this.lead;
+      yield this.manager;
+      yield this.engineer;
+      yield* this.testingTeam;
+    }
+  };
+  
+  const names4 = [];
+  for(let name4 of engineeringTeam2) {
+    names4.push(name4);
+  };
+  
+  console.log(names4);
+
+  // -------------------------------------------------
+  class Comment{
+    constructor(content, children) {
+      this.content = content;
+      this.children = children;
+    }
+
+    *[Symbol.iterator]() {
+      yield this.content;
+      for(let child of this.children) {
+        yield* child;
+      }
+    }
+  }
+
+  const children = [
+    new Comment('賛成！', []),
+    new Comment('反対！', []),
+    new Comment('う〜ん！', []),
+  ];
+
+  const tree = new Comment('非常にいい記事です！', children);
+  console.log(tree);
+
+
+  const values = [];
+  for(let value of tree) {
+    values.push(value);
+  }
+  console.log(values);
